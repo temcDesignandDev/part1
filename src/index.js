@@ -1,50 +1,64 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-const Header = () => {
-  const Course = "Half Stack application development";
+const Header = (props) => {
   return (
-    <div>
-      <h1>{Course}</h1>
-    </div>
+    <>
+      <h1>{props.course}</h1>
+    </>
   );
 };
 
 const Content = (props) => {
   return (
-    <div>
-      <p>{props.subtitle1}</p>
-      <p>{props.subtitle2}</p>
-      <p>{props.subtitle3}</p>
-    </div>
+    <>
+      <p>
+        {props.parts[0].name} ...............
+        {props.parts[0].exercises}
+      </p>
+      <p>
+        {props.parts[1].name} ...............
+        {props.parts[1].exercises}
+      </p>
+      <p>
+        {props.parts[2].name} ...............
+        {props.parts[2].exercises}
+      </p>
+    </>
   );
 };
 
-const Total = () => {
-  const exercises1 = 10;
-  const exercises2 = 7;
-  const exercises3 = 14;
-  const suma = exercises1 + exercises2 + exercises3;
+const Total = (props) => {
+  const suma =
+    props.parts[0].exercises +
+    props.parts[1].exercises +
+    props.parts[2].exercises;
   return suma;
 };
 
 const App = () => {
-  const subtitle1 = "Fundamentals of React ................ 10";
-  const subtitle2 = "Using props to pass data ............... 7";
-  const subtitle3 = "State of a component ................... 14";
+  const course = "Half Stack application development";
+  const parts = [
+    {
+      name: "Fundamentals of React",
+      exercises: 10,
+    },
+    {
+      name: "Using props to pass data",
+      exercises: 7,
+    },
+    {
+      name: "State of a component",
+      exercises: 14,
+    },
+  ];
+
   return (
     <div>
-      <h1>
-        <Header />
-      </h1>
-      <h2>
-        <Content subtitle1={subtitle1} />
-        <Content subtitle2={subtitle2} />
-        <Content subtitle3={subtitle3} />
-        Number of exercises .................... <Total />
-      </h2>
+      <Header course={course} />
+      <Content parts={parts} />
+      Number of exercises .................... <Total parts={parts} />
     </div>
   );
 };
-
 ReactDOM.render(<App />, document.getElementById("root"));
