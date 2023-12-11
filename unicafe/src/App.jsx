@@ -1,28 +1,9 @@
 import { useState } from "react";
 
 const Button = (props) => {
-  const goodClick = () => {
-    {
-      props.setGood(props.good + 1);
-    }
-  };
-
-  const neutralClick = () => {
-    {
-      props.setNeutral(props.neutral + 1);
-    }
-  };
-
-  const badClick = () => {
-    {
-      props.setBad(props.bad + 1);
-    }
-  };
   return (
     <>
-      <button onClick={goodClick}>Good</button>
-      <button onClick={neutralClick}>Neutral</button>
-      <button onClick={badClick}>Bad</button>
+      <button onClick={() => props.click(props.name)}>{props.name}</button>
     </>
   );
 };
@@ -79,17 +60,19 @@ const App = () => {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
+  const Click = (typeButton) => {
+    console.log("hola", typeButton);
+    typeButton === "Good" && setGood(good + 1);
+    typeButton === "Neutral" && setNeutral(neutral + 1);
+    typeButton === "Bad" && setBad(bad + 1);
+  };
+
   return (
     <div>
       <h1>Give FeedBack</h1>
-      <Button
-        good={good}
-        setGood={setGood}
-        neutral={neutral}
-        setNeutral={setNeutral}
-        bad={bad}
-        setBad={setBad}
-      />
+      <Button name="Good" click={Click} />
+      <Button name="Neutral" click={Click} />
+      <Button name="Bad" click={Click} />
       <h2>Statistic</h2>
       <Statistic good={good} neutral={neutral} bad={bad} />
     </div>
