@@ -1,5 +1,32 @@
 import { useState } from "react";
 
+const Button = (props) => {
+  const goodClick = () => {
+    {
+      props.setGood(props.good + 1);
+    }
+  };
+
+  const neutralClick = () => {
+    {
+      props.setNeutral(props.neutral + 1);
+    }
+  };
+
+  const badClick = () => {
+    {
+      props.setBad(props.bad + 1);
+    }
+  };
+  return (
+    <>
+      <button onClick={goodClick}>Good</button>
+      <button onClick={neutralClick}>Neutral</button>
+      <button onClick={badClick}>Bad</button>
+    </>
+  );
+};
+
 const StatisticLine = (props) => {
   return (
     <p>
@@ -40,27 +67,17 @@ const App = () => {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
-  const goodClick = () => {
-    console.log("Good clickeado");
-    setGood(good + 1);
-  };
-
-  const neutralClick = () => {
-    console.log("Neutral clickeado");
-    setNeutral(neutral + 1);
-  };
-
-  const badClick = () => {
-    console.log("Bad clickeado");
-    setBad(bad + 1);
-  };
-
   return (
     <div>
       <h1>Give FeedBack</h1>
-      <button onClick={goodClick}>Good</button>
-      <button onClick={neutralClick}>Neutral</button>
-      <button onClick={badClick}>Bad</button>
+      <Button
+        good={good}
+        setGood={setGood}
+        neutral={neutral}
+        setNeutral={setNeutral}
+        bad={bad}
+        setBad={setBad}
+      />
       <h2>Statistic</h2>
       <Statistic good={good} neutral={neutral} bad={bad} />
     </div>
