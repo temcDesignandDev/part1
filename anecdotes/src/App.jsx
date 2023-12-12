@@ -21,9 +21,8 @@ const App = () => {
     updatedVotes[selected] += 1;
     setVotes(updatedVotes);
 
-    if (updatedVotes[selected] > updatedVotes[mostVoted]) {
+    if (updatedVotes[selected] > updatedVotes[mostVoted])
       setMostVoted(selected);
-    }
   };
 
   const handleNextAnecdote = () => {
@@ -37,8 +36,8 @@ const App = () => {
         <h2>Vote for the one you like the most</h2>
         <div>{anecdotes[selected]}</div>
         <p>has {votes[selected]} votes</p>
-        <button onClick={handleVote}>Vote</button>
-        <button onClick={handleNextAnecdote}>Next Anecdote</button>
+        <button onClick={() => handleVote()}>Vote</button>
+        <button onClick={() => handleNextAnecdote()}>Next Anecdote</button>
       </div>
       <hr />
       <div>
